@@ -1,4 +1,4 @@
-class Movie < ApplicationRecord
+class Movie < ActiveRecord::Base
   #### Part 1 ####
   # implement this method. Remeber to exclude [self]
   # (the current movie) from your return value
