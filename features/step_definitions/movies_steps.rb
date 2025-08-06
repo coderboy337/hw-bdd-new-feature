@@ -22,3 +22,18 @@ Then(/I should see all the movies/) do
     step %(I should see "#{movie.title}")
   end
 end
+
+Then(/^the director of "(.+)" should be "(.+)"$/) do |movie, expected_director|
+    expect(page).to have_content(expected_director)
+end
+
+  
+When(/^I follow "Delete" for "(.*)"$/) do |movie_title|
+    movie = Movie.find_by(title: movie_title)
+    # Assuming you have a delete link or button with id or text that includes the movie's id or title
+    # This may need adjustment depending on your actual view markup.
+    within("tr#movie_#{movie.id}") do
+      click_link("Delete")
+    end
+end
+  

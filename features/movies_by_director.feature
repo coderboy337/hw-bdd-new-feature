@@ -32,3 +32,21 @@ Scenario: can't find similar movies if we don't know director (sad path)
   When  I follow "Find Movies With Same Director"
   Then  I should be on the home page
   And   I should see "'Alien' has no director info"
+
+Scenario: Create a new movie
+    Given I am on the home page
+    When I follow "Add new movie"
+    And I fill in "Title" with "Inception"
+    And I select "PG-13" from "Rating"
+    And I fill in "Director" with "Christopher Nolan"
+    And I fill in "Release date" with "2010-07-16"
+    And I press "Create Movie"
+    Then I should see "Inception"
+    And I should be on the home page
+
+  Scenario: Delete a movie
+    Given I am on the details page for "Alien"
+    When I follow "Delete"
+    Then I should be on the home page
+    And I should not see "Alien"
+

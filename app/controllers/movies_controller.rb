@@ -9,6 +9,17 @@ class MoviesController < ApplicationController
     @movies = Movie.all
   end
 
+  def show_by_director
+    @movie = Movie.find(params[:id])
+    if @movie.director.present?
+      @director = @movie.director
+      @movies = Movie.where(director: @director).where.not(id: @movie.id)
+    else
+      flash[:notice] = "'#{@movie.title}' has no director info"
+      redirect_to movies_path
+    end
+  end  
+
   def new
     # default: render 'new' template
   end
