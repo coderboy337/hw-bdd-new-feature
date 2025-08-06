@@ -11,6 +11,7 @@ class MoviesController < ApplicationController
 
   def show_by_director
     @movie = Movie.find(params[:id])
+    curr_movie = @movie
     if @movie.director.present?
       @director = @movie.director
       @movies = Movie.where(director: @director).where.not(id: @movie.id)

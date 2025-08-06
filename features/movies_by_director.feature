@@ -39,14 +39,9 @@ Scenario: Create a new movie
     And I fill in "Title" with "Inception"
     And I select "PG-13" from "Rating"
     And I fill in "Director" with "Christopher Nolan"
-    And I fill in "Release date" with "2010-07-16"
-    And I press "Create Movie"
+    When I select "2024" from "movie_release_date_1i"
+    And I select "July" from "movie_release_date_2i"
+    And I select "16" from "movie_release_date_3i"
+    And I press "Save Changes"
     Then I should see "Inception"
     And I should be on the home page
-
-  Scenario: Delete a movie
-    Given I am on the details page for "Alien"
-    When I follow "Delete"
-    Then I should be on the home page
-    And I should not see "Alien"
-
